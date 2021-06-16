@@ -13,9 +13,6 @@ import MealItem from '../components/meal/Meal';
 import logo from '../logo.png';
 import { v4 as uuidv4 } from 'uuid';
 
-const URL =
-`https://www.themealdb.com/api/json/v1/1/search.php?s=chicken`;
-
 const Home = () => {
   const [query, setQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
