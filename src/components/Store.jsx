@@ -1,13 +1,22 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState , useReducer} from 'react';
 
-export const Store = createContext();
+const initialState = {
+  meals: [],
+  favorites: [],
+};
 
-const initialState = {}
+export const Store = createContext(initialState);
 
-function reducer() {
-
+function reducer(state, action) {
+  switch (action.type) {
+    case 'FETCH_DATA':
+      return { ...state, meals: action.payload };
+    default:
+      return state;
+  }
 }
 
 export function StoreProvider(props) {
-  return <Store.Provider value={'test'}>{props.children}</Store.Provider>
+  const [state, dispatch] = useReducer(reducer, initialState)
+  return <Store.Provider value={{state, dispatch}}>{props.children}</Store.Provider>;
 }
